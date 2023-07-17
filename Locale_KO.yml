@@ -1,0 +1,913 @@
+#CMI lang 파일만 번역이기에 미흡한 부분이 있을수도있습니다.  디스코드 : 짱구#walletfairy
+
+#깃헙이나 디스코드로 수정요청 줄수 찾아서 문의주면 수정해서 업로드 진행하겠습니다.
+
+# 풀 컬러 코드 지원 및 일부 변수
+
+# 변수는 어떤 라인에서는 작동하지 않지만 다른 라인에서는 작동한다는 점을 명심하세요 :)
+
+# 지금 있는 그대로 유지하면 모든 것이 잘 될 것입니다 :)
+
+# 일부 줄은 전역 변수를 설정할 수 있습니다. 영향을 받을 플레이어를 위해. 예를 들어 "/heal Zrips"는 Zrips의 데이터를 사용합니다.
+
+# serverName: 서버 이름
+
+# playerName: 대상 플레이어 이름
+
+# playerDisplayName: 대상 플레이어 표시 이름
+
+# lvl: 대상 플레이어 레벨
+
+# exp: 대상 플레이어 총 경험치
+
+# hp: 대상 플레이어 체력
+
+# maxHp: 대상 플레이어 최대 체력
+
+# hunger: 대상 플레이어 허기 수준
+
+# gameMode: 대상 플레이어 게임 모드
+
+# prefix: 대상 플레이어 접두사 (가능한 경우)
+
+# suffix: 대상 플레이어 접미사 (가능한 경우)
+
+# Sender는 콘솔이거나 명령을 실행하는 플레이어를 나타냅니다. 예를 들어, Zrips이 "/heal Zhax"를 실행하는 경우, Zrips의 데이터가 사용됩니다.
+
+# senderName: 보내는 플레이어 이름
+
+# senderDisplayName: 보내는 플레이어 표시 이름
+
+# senderLvl: 보내는 플레이어 레벨
+
+# senderExp: 보내는 플레이어 총 경험치
+
+# senderHp: 보내는 플레이어 체력
+
+# senderMaxHp: 보내는 플레이어 최대 체력
+
+# senderHunger: 보내는 플레이어 허기 수준
+
+# senderGameMode: 보내는 플레이어 게임 모드
+
+# senderPrefix: 보내는 플레이어 접두사 (가능한 경우)
+
+# senderSuffix: 보내는 플레이어 접미사 (가능한 경우)
+
+# Source는 추가 정보를 위해 사용되는 플레이어입니다. 예를 들어, Zrips이 "/tp Zhax Zrips"를 실행하는 경우, Zhax의 데이터가 사용됩니다. 이는 대상 플레이어의 위치를 새로운 플레이어의 위치로 사용하기 위한 것입니다.
+
+# sourceName: 출처 플레이어 이름
+
+# sourceDisplayName: 출처 플레이어 표시 이름
+
+# sourceLvl: 출처 플레이어 레벨
+
+# sourceExp: 출처 플레이어 총 경험치
+
+# sourceHp: 출처 플레이어 체력
+
+# sourceMaxHp: 출처 플레이어 최대 체력
+
+# sourceHunger: 출처 플레이어 허기 수준
+
+# sourceGameMode: 출처 플레이어 게임 모드
+
+# sourcePrefix: 출처 플레이어 접두사 (가능한 경우)
+
+# sourceSuffix: 출처 플레이어 접미사 (가능한 경우)
+
+# ***********************************************
+
+# 일부 라인은 액션바, 타이틀, 서브타이틀 또는 JSON/클릭 가능한 메시지로 보낼 수 있는 옵션을 지원합니다.
+
+# 라인이 !toast!로 시작하면 플레이어는 해당 변수 뒤에 정의된 종류와 아이콘을 사용하여 토스트 메시지(1.12 버전 이상에서만 사용 가능한 진척 메시지 팝업)를 받습니다. 예를 들어: !toast! -t:goal -icon:paper Hello world!
+
+# 라인이 !actionbar!로 시작하면 플레이어는 해당 변수 이후에 정의된 액션바 메시지를 받습니다.
+
+# 라인이 !actionbar:[초]로 시작하면 플레이어는 정의된 시간 동안 액션바 메시지를 받습니다.
+
+# 라인이 !broadcast!로 시작하면 모든 사람이 메시지를 받습니다. 추가로 !toast!, !actionbar!, 또는 !title!을 추가하여 특정 위치로 메시지를 보낼 수 있습니다. 예를 들어, !broadcast!!title!
+
+# 라인이 !customtext:[cTextName]!로 시작하면 해당 이름으로 사용자 정의 텍스트를 가져와 플레이어에게 표시됩니다. !broadcast! 이후에 사용되는 경우 온라인인 모든 사람들이 이 사용자 정의 텍스트 메시지를 받습니다.
+
+# 라인이 !title!로 시작하면 플레이어는 해당 변수 이후에 정의된 타이틀 메시지를 받습니다. 서브타이틀 메시지를 추가할 수도 있습니다.
+
+# 라인이 !bossbar:[이름]-[타이머]로 시작하면 플레이어는 해당 변수 이후에 정의된 보스바 메시지를 받습니다. 또한 이 메시지가 표시되는 기간을 정의할 수 있습니다. 원하는 보스바 이름을 정의해야 하지만, 동일한 이름을 가진 라인은 서로 덮어쓰기되어 중첩을 방지합니다.
+
+# 클릭 가능한 메시지를 포함하려면: <T>텍스트</T><H>마우스 오버 텍스트</H><C>명령어</C><SC>제안된 텍스트</SC>를 사용하세요.
+
+# <T>와 </T>는 필수입니다. 나머지는 선택사항입니다.
+
+# 줄 바꿈은 /n을 사용하세요.
+
+# 여러 개의 JSON 메시지를 포함하려면 <Next>를 사용하세요.
+
+# <C>는 클릭한 플레이어로 명령을 실행합니다.
+
+# <CC>는 한 번 콘솔에서 명령을 실행합니다.
+
+# <CCI>는 플레이어가 텍스트를 클릭할 때마다 콘솔에서 명령을 실행합니다.
+
+# <URL>은 URL을 포함합니다.
+
+info:
+  prefix: "&e[CMI] "
+  NoPermission: "&c권한이 없습니다!"
+  CantHavePermission: "&c이 권한을 가질 수 없습니다!"
+  WrongGroup: "&c당신은 이것에 대해 잘못된 그룹에 속해 있습니다!"
+  NoPlayerPermission: "&c이 플레이어는 [permission] 권한이 없습니다: [playerName]"
+  Ingame: "&c인게임에서만 사용할 수 있습니다!"
+  NoInformation: "&c정보를 찾을 수 없습니다!"
+  Console: "&6서버"
+  FromConsole: "&c콘솔에서만 사용할 수 있습니다!"
+  NotOnline: "&c플레이어가 오프라인 상태입니다!"
+  NobodyOnline: "&c현재 접속 중인 플레이어가 없습니다!"
+  NoPlayer: "&c해당 이름의 플레이어를 찾을 수 없습니다!"
+  NoCommand: "&c해당 이름의 명령어를 찾을 수 없습니다!"
+  cantFindCommand: "&5명령어 &7[%1]&5을(를) 찾을 수 없습니다. 다음과 비슷한 명령어는 없습니까? &7[%2]&5?"
+  nolocation: "&4적합한 위치를 찾을 수 없습니다"
+  FeatureNotEnabled: "&c이 기능은 활성화되어 있지 않습니다!"
+  ModuleNotEnabled: "&c이 모듈은 활성화되어 있지 않습니다!"
+  versionNotSupported: "&c서버 버전은 이 기능을 지원하지 않습니다"
+  spigotNotSupported: "&c이 기능은 PaperSpigot 브랜치 타입의 서버에서만 작동합니다"
+  bungeeNoGo: "&c이 기능은 Bungee 네트워크 기반 서버에서 작동하지 않습니다"
+  clickToTeleport: "&e클릭하여 이동"
+  UseMaterial: "&4블록 이름을 사용해주세요!"
+  IncorrectMaterial: "&4올바르지 않은 블록 이름입니다!"
+  UseInteger: "&4숫자를 사용해주세요!"
+  UseBoolean: "&4True 또는 False를 사용해주세요!"
+  NoLessThan: "&4숫자는 [amount] 이상이어야 합니다!"
+  NoMoreThan: "&4숫자는 [amount] 이하여야 합니다"
+  NoWorld: "&4해당 이름의 월드를 찾을 수 없습니다!"
+  IncorrectLocation: "&4잘못된 위치 형식입니다!"
+  Show: "&e보기"
+  Remove: "&c제거"
+  Back: "&e뒤로"
+  Forward: "&e앞으로"
+  Update: "&e업데이트"
+  Save: "&e저장"
+  Delete: "&c삭제"
+  Click: "&e클릭"
+  Preview: "&e미리보기"
+  PasteOld: "&e이전 내용 붙여넣기"
+  ClickToPaste: "&e클릭하여 채팅창에 붙여넣기"
+  CantTeleportWorld: "&e해당 월드로는 이동할 수 없습니다"
+  CantTeleportNoWorld: "&c대상 월드가 존재하지 않습니다. 이동이 취소되었습니다"
+  ClickToConfirmDelete: "&e클릭하여 [name]의 삭제를 확인하세요"
+  teleported: "&e이동되었습니다."
+  PlayerSpliter: "&e----- &6[playerDisplayName] &e-----"
+  Spliter: "&e--------------------------------------------------"
+  SpliterValue: "&e------------------ &6[value] &e------------------"
+  singleSpliter: "&e-"
+  SpliterMiddle: " &6[value] "
+  ListSpliter: ", "
+  ProgressBarFill: "&2▏"
+  ProgressBarEmpty: "&e▏"
+  nothingInHand: "!actionbar!&e손에 아이템을 들어야 합니다"
+  nothingInHandLeather: "&e손에 가죽 아이템을 들어야 합니다"
+  nothingToShow: "&e표시할 내용이 없습니다"
+  noItem: "&c아이템을 찾을 수 없습니다"
+  dontHaveItem: "&c인벤토리에 &6[amount]개의 [itemName] &c아이템이 없습니다"
+  wrongWorld: "&c해당 월드에서는 사용할 수 없습니다"
+  differentWorld: "&c다른 월드에서 사용하세요"
+  HaveItem: "&c인벤토리에 &6[amount]개의 [itemName] &c아이템이 있습니다"
+  cantDoInGamemode: "&e이 게임 모드에서는 사용할 수 없습니다"
+  cantDoForPlayer: "&e[playerDisplayName]에게 이 작업을 수행할 수 없습니다"
+  cantDoForYourSelf: "&e자기 자신에게 이 작업을 수행할 수 없습니다"
+  cantDetermineMobType: "&c[type] 변수에서 몹 유형을 결정할 수 없습니다"
+  cantRename: "!actionbar!&e이 이름을 사용할 수 없습니다"
+  confirmRedefine: "&e재정의를 확인하려면 클릭하세요"
+  cantEdit: "&e수정할 수 없습니다"
+  wrongName: "&c잘못된 이름입니다"
+  unknown: 알 수 없음
+  invalidName: "&c잘못된 이름입니다"
+  alreadyexist: "&4이 이름은 이미 사용 중입니다"
+  dontexist: "&4해당 이름을 찾을 수 없습니다"
+  worldDontExist: "&c대상 월드에 더 이상 접근할 수 없습니다. 이동할 수 없습니다!"
+  notSet: 설정되지 않음
+  lookAtSign: "&e앞에 있는 표지판을 바라보세요"
+  lookAtBlock: "&e앞에 있는 블록을 바라보세요"
+  lookAtEntity: "&e앞에 있는 엔티티를 바라보세요"
+  noSpace: "&e충분한 빈 공간이 없습니다"
+  notOnGround: "&e날고 있는 동안에는 이 작업을 수행할 수 없습니다"
+  bungee:
+    Online: "&6온라인"
+    Offline: "&c오프라인"
+    not: "&c서버가 Bungee 네트워크에 속하지 않습니다"
+    noserver: "&c해당 이름의 서버를 찾을 수 없습니다!"
+    server: "&e서버: &7[name]"
+  variables:
+    am: "&eAM"
+    pm: "&ePM"
+    Online: "&6온라인"
+    Offline: "&c오프라인"
+    TrueColor: "&2"
+    FalseColor: "&4"
+    "True": "&6True"
+    "False": "&cFalse"
+    Enabled: "&6활성화됨"
+    Disabled: "&c비활성화됨"
+    survival: "&6서바이벌"
+    creative: "&6크리에이티브"
+    adventure: "&6어드벤처"
+    spectator: "&6관전"
+    flying: "&6비행"
+    notflying: "&6비행하지 않음"
+  Inventory:
+    Full: "&5인벤토리가 가득 찼습니다. 아이템을 추가할 수 없습니다"
+    FullDrop: "&5인벤토리에 공간이 부족합니다. 아이템이 바닥에 드롭되었습니다"
+  TimeNotRecorded: "&e기록 없음"
+  months: "&e[months] 개월 "
+  oneMonth: "&e[months] 개월 "
+  weeks: "&e[weeks] 주 "
+  oneWeek: "&e[weeks] 주 "
+  years: "&e[years] 년 "
+  oneYear: "&e[years] 년 "
+  day: "&e[days] 일 "
+  oneDay: "&e[days] 일 "
+  hour: "&e[hours] 시간 "
+  oneHour: "&e[hours] 시간 "
+  min: "&e[mins] 분 "
+  sec: "&e[secs] 초 "
+  nextPageConsole: "&f다음 페이지를 보려면 &5[command] 명령어를 입력하세요"
+  prevPage: "&2----<< &6이전 "
+  prevCustomPage: "&2----<< &6[value] "
+  prevPageGui: "&6이전 페이지 "
+  prevPageClean: "&6이전 "
+  prevPageOff: "&2----<< &7이전 "
+  prevCustomPageOff: "&2----<< &7[value] "
+  prevPageHover: "&7<<<"
+  firstPageHover: "&7|<"
+  nextPage: "&6다음 &2>>----"
+  nextCustomPage: "&6 [value] &2>>----"
+  nextPageGui: "&6다음 페이지"
+  nextPageClean: "&6다음"
+  nextPageOff: "&7다음 &2>>----"
+  nextCustomPageOff: "&7 [value] &2>>----"
+  nextPageHover: "&7>>>"
+  lastPageHover: "&7>|"
+  pageCount: "&2[current]&7/&2[total]"
+  pageCountHover: "&e[totalEntries]개의 항목"
+  skullOwner: "!actionbar!&7소유자: &r[playerName]"
+  circle: "&3원"
+  square: "&5사각형"
+  clear: "&7지우기"
+  protectedArea: "&c보호된 영역입니다. 이 작업을 여기서 수행할 수 없습니다."
+  valueToLong: "&e값이 너무 큽니다. 최대: [max]"
+  valueToShort: "&e값이 너무 작습니다. 최소: [min]"
+  pickIcon: "&8아이콘 선택"
+  # 다음 로케일 줄이 CMI 폴더로 이동되었으며 향후 업데이트에서 이 파일에서 제거됩니다. 해당 행을 수정하려면 CMI 로케일 디렉토리를 확인하십시오.
+  Same: "&c자신의 인벤토리를 편집할 수 없습니다!"
+  cantLoginWithDifCap: "&c대문자 구분이 다른 이름으로 로그인할 수 없습니다! 이전 이름: &e[oldName]&c. 현재: &e[currentName]"
+  Searching: "&e플레이어 데이터를 검색 중입니다. 잠시 기다려주십시오."
+  NoCommandWhileSleeping: "&c잠자는 동안 명령을 실행할 수 없습니다!"
+  PurgeNotEnabled: "&c설정 파일에서 퍼지 기능이 비활성화되었습니다!"
+  TeamManagementDisabled: "&7이 기능은 DisableTeamManagement이 true로 설정된 경우에만 제한된 기능을 제공합니다!"
+  NoGameMode: "&c0/1/2/3 또는 Survival/Creative/Adventure/Spectator 또는 s/c/a/sp를 사용해주세요!"
+  NameChange: "&6[playerDisplayName] &e님이 로그인하셨습니다. 또한 알려진 이름은: &6[namelist]"
+  Cooldowns: "&e이 명령은 아직 [time] 후에 재사용할 수 있습니다."
+  specializedCooldowns: "&e이 명령은 현재 쿨다운 중이며, [time] 후에 사용할 수 있습니다."
+  specializedRunning: "&e이 명령은 아직 실행 중이며, [time] 후에 완료됩니다."
+  CooldownOneTime: "&e이 명령은 한 번만 사용할 수 있습니다!"
+  WarmUp:
+    canceled: "&e움직임으로 인해 명령이 취소되었습니다."
+    counter: "!actionbar!&6--> [time]초 기다려주세요 <--"
+    DontMove: "!title!&6움직이지 마세요!!subtitle!&7 [time]초 기다려주세요"
+    Boss:
+      DontMove: "&4[autoTimeLeft]초 동안 움직이지 마세요!"
+      WaitFor: "&4[autoTimeLeft]초 동안 기다려주세요!"
+  Spawner: "&r[type] 스포너"
+  FailedSpawnerMine: "!actionbar!&c스포너를 채광하지 못했습니다. 드랍 확률: [percent]%"
+  ClickSpawner: "!actionbar!&7드랍 확률: [percent]%"
+  Elevator:
+    created: "&e엘리베이터 표지판이 생성되었습니다."
+  CantPlaceSpawner: "&e스포너를 다른 스포너와 너무 가까이 놓을 수 없습니다. (범위: [range])"
+  ChunksLoading: "&e월드 청크 데이터가 아직 로드 중입니다. 잠시 기다려주세요."
+  CantUseNonEncrypted: "!actionbar!&c이 아이템에 대한 명령어는 암호화되지 않았습니다. 사용할 수 없습니다!"
+  CantDecode: "!actionbar!&c메시지/명령어를 해독할 수 없습니다. 키 파일에 잘못된 키가 포함되어 있습니다. 관리자에게 문의하십시오."
+  CantTeleport: "&e제한된 아이템이 너무 많아 텔레포트할 수 없습니다. 최대 허용 아이템 수를 확인하려면 이 줄 위로 스크롤하세요."
+  BlackList: "&e[material] [amount] &6최대: [max]"
+  wrongPortal: "&c잘못된 영향 범위에 있습니다."
+  ItemWillBreak: "!actionbar!&e아이템 ([itemName])이/가 곧 파괴됩니다! 현재: [current]/[max]"
+  ArmorWillBreak: "!actionbar!&e[armorName]이/가 곧 파괴됩니다! 현재: [current]/[max]"
+  flyingToHigh: "&c너무 높이 날 수 없습니다. 최대 높이는 [max]입니다!"
+  specializedItemFail: "&c값 [value]에 따라 특수 아이템 요구 사항을 판단할 수 없습니다."
+  sunSpeeding: "잠자는 중 [count] / [total] [hour]시간 [speed]배속"
+  sleepersRequired: "!actionbar!&f[sleeping] / &f[required] 잠자는 중 (필요한 수: [required])"
+  sunSpeedingTitle: "&7[hour]"
+  skippingNight: "!title!&7전체 밤 건너뛰기"
+  sunSpeedingSubTitle: "&f[count]/[total] ([speed]배속)"
+  repairConfirm: "&e클릭하여 [items] 아이템을 [cost] 비용으로 수리합니다."
+  bookDate: "&7작성 날짜: [date]"
+  maintenance: "&7유지 보수 모드"
+  mapLimit: "&c30,000,000 블록 이상으로 이동할 수 없습니다."
+  startedEditingPainting: "&e그림 편집을 시작했습니다. 다른 블록을 클릭하여 취소하세요."
+  canceledEditingPainting: "&e그림 편집 모드를 취소했습니다."
+  changedPainting: "!actionbar!&e그림이 [name]으로 변경되었습니다. ID: [id]"
+  noSpam: "!title!&c스팸을 금지합니다!"
+  noCmdSpam: "!title!&c명령어 스팸을 금지합니다!"
+  spamConsoleInform: "&c플레이어 ([playerName])이 ([rules]) 채팅 필터를 트리거했습니다: [message]"
+  FirstJoin: "&e[playerDisplayName]님, 서버에 오신 것을 환영합니다!"
+  LogoutCustom: " [playerDisplayName]님이 게임을 나갔습니다"
+  LoginCustom: " [playerDisplayName]님이 게임에 참여했습니다"
+  deathlocation: "&e[x] 좌표에서 사망했습니다. 좌표: x:[x], y:[y], z:[z], 월드: [world]"
+  book:
+    exploit: "&c[amount] 페이지를 초과하는 책을 만들 수 없습니다."
+  combat:
+    CantUseShulkerBox: "&c상대 플레이어와 전투 중일 때는 셜커 상자를 사용할 수 없습니다. 대기 시간: [time]"
+    CantUseCommand: "!actionbar!&c전투 모드 중에는 명령어를 사용할 수 없습니다. 대기 시간: [time]"
+    bossBarPvp: "&c전투 모드 [autoTimeLeft]"
+    bossBarPve: "&2전투 모드 [autoTimeLeft]"
+  noSchedule: "&c이 이름의 일정을 찾을 수 없습니다."
+  totem:
+    cooldown: "&e토템 재사용 대기 시간: [time]"
+    warmup: "&e토템 효과 지속 시간: [time]"
+    cantConsume: "&e쿨다운 시간으로 인해 토템을 사용할 수 없습니다."
+  InventorySave:
+    info: "&8정보: &8[playerDisplayName]"
+    saved: "&e[id]로 [time]에 인벤토리가 저장되었습니다."
+    NoSavedInv: "&e이 플레이어는 저장된 인벤토리가 없습니다."
+    NoEntries: "&4파일은 존재하지만 인벤토리를 찾을 수 없습니다!"
+    CantFind: "&e이 ID의 인벤토리를 찾을 수 없습니다."
+    TopLine: "&e----------- &6[playerDisplayName]님의 저장된 인벤토리 &e-----------"
+    List: "&eID: &6[id]&e. [time]"
+    KillerSymbol: "&c ☠"
+    Click: "&e클릭하여 ([id]) 저장된 인벤토리를 확인합니다."
+    IdDontExist: "&4이 저장 ID가 존재하지 않습니다!"
+    Deleted: "&e저장된 인벤토리가 성공적으로 삭제되었습니다!"
+    Restored: "&e[sourcename]의 저장된 인벤토리를 [targetname]님에게 복원했습니다."
+    GotRestored: "&e[sourcename]의 저장된 인벤토리에서 인벤토리가 복원되었습니다. 날짜: [time]"
+    LoadForSelf: "&e자신을 위해 이 인벤토리를 불러옵니다."
+    LoadForOwner: "&e소유자를 위해 이 인벤토리를 불러옵니다."
+    NextInventory: "&e다음 인벤토리"
+    PreviousInventory: "&e이전 인벤토리"
+    Editable: "&e편집 모드 활성화됨"
+    NonEditable: "&e편집 모드 비활성화됨"
+  vanishSymbolOn: "&8[&7숨김&8]&r"
+  vanishSymbolOff: ""
+  afkSymbolOn: "&8[&7자리비움&8]&r"
+  afkSymbolOff: ""
+  beeinfo: "!actionbar!&7꿀 레벨: &e[level]&7/&e[maxlevel], 벌의 수: &e[count]&7/&e[maxcount]"
+  pvp:
+    noGodDamage: "!actionbar!&c무적 상태에서는 플레이어를 공격할 수 없습니다."
+  pve:
+    noGodDamage: "!actionbar!&c무적 상태에서는 몬스터를 공격할 수 없습니다."
+  InvEmpty:
+    armor: "&e갑옷 슬롯이 비어 있어야 합니다!"
+    hand: "&e손이 비어 있어야 합니다!"
+    maininv: "&e주 인벤토리가 비어 있어야 합니다!"
+    maininvslots: "&e주 인벤토리에 적어도 [count]개의 빈 슬롯이 있어야 합니다!"
+    inv: "&e인벤토리가 비어 있어야 합니다!"
+    offhand: "&e보조 손이 비어 있어야 합니다!"
+    quickbar: "&e퀵바가 비어 있어야 합니다!"
+    quickbarslots: "&e퀵바에 적어도 [count]개의 빈 슬롯이 있어야 합니다!"
+    subinv: "&e서브 인벤토리가 비어 있어야 합니다!"
+    subinvslots: "&e서브 인벤토리에 적어도 [count]개의 빈 슬롯이 있어야 합니다!"
+  DamageCause:
+    block_explosion: 폭발
+    contact: 블록 데미지
+    cramming: 너무 많은 생명체
+    custom: 알 수 없음
+    dragon_breath: 드래곤의 숨결
+    drowning: 익사
+    dryout: 건조
+    entity_attack: 생명체 공격
+    entity_explosion: 폭발
+    entity_sweep_attack: 생명체 범위 공격
+    fall: 낙하
+    falling_block: 떨어지는 블록
+    fire: 불
+    fire_tick: 불
+    fly_into_wall: 벽에 날아들기
+    freeze: 얼음
+    hot_floor: 용암
+    lava: 용암
+    lightning: 번개
+    magic: 마법
+    melting: 용해
+    poison: 독
+    projectile: 발사체
+    sonic_boom: 초음파 폭발
+    starvation: 기아
+    suffocation: 질식
+    suicide: 자살
+    thorns: 가시
+    void: 공허
+    wither: 위더
+  Biomes:
+    BADLANDS: "악지"
+    BAMBOO_JUNGLE: "대나무 정글"
+    BASALT_DELTAS: "바실트 델타"
+    BEACH: "해변"
+    BIRCH_FOREST: "자작나무 숲"
+    CHERRY_GROVE: "체리 그로브"
+    COLD_OCEAN: "차가운 바다"
+    CRIMSON_FOREST: "진홍 숲"
+    CUSTOM: "사용자 정의"
+    DARK_FOREST: "어두운 숲"
+    DEEP_COLD_OCEAN: "깊고 차가운 바다"
+    DEEP_DARK: "깊고 어두운 곳"
+    DEEP_FROZEN_OCEAN: "깊은 얼어붙은 바다"
+    DEEP_LUKEWARM_OCEAN: "깊은 온난한 바다"
+    DEEP_OCEAN: "깊은 바다"
+    DESERT: "사막"
+    DRIPSTONE_CAVES: "물방울 동굴"
+    END_BARRENS: "끝 동굴"
+    END_HIGHLANDS: "끝 고원"
+    END_MIDLANDS: "끝 중지대"
+    ERODED_BADLANDS: "침식된 악지"
+    FLOWER_FOREST: "꽃 숲"
+    FOREST: "숲"
+    FROZEN_OCEAN: "얼어붙은 바다"
+    FROZEN_PEAKS: "얼어붙은 봉우리"
+    FROZEN_RIVER: "얼어붙은 강"
+    GROVE: "그로브"
+    ICE_SPIKES: "얼음 뾰족이"
+    JAGGED_PEAKS: "울퉁불퉁한 봉우리"
+    JUNGLE: "정글"
+    LUKEWARM_OCEAN: "온난한 바다"
+    LUSH_CAVES: "푸른 동굴"
+    MANGROVE_SWAMP: "만그로브 스웜프"
+    MEADOW: "초원"
+    MUSHROOM_FIELDS: "버섯 들판"
+    NETHER_WASTES: "네더 황무지"
+    OCEAN: "바다"
+    OLD_GROWTH_BIRCH_FOREST: "수렵자 숲"
+    OLD_GROWTH_PINE_TAIGA: "올드 그로스 파인 타이가"
+    OLD_GROWTH_SPRUCE_TAIGA: "올드 그로스 스프루스 타이가"
+    PLAINS: "평야"
+    RIVER: "강"
+    SAVANNA: "사바나"
+    SAVANNA_PLATEAU: "사바나 고원"
+    SMALL_END_ISLANDS: "작은 끝 섬"
+    SNOWY_BEACH: "눈덮인 해변"
+    SNOWY_PLAINS: "눈덮인 평원"
+    SNOWY_SLOPES: "눈덮인 비탈"
+    SNOWY_TAIGA: "눈덮인 타이가"
+    SOUL_SAND_VALLEY: "영혼 모래 계곡"
+    SPARSE_JUNGLE: "희박한 정글"
+    STONY_PEAKS: "돌 봉우리"
+    STONY_SHORE: "돌이 많은 해안"
+    SUNFLOWER_PLAINS: "해바라기 평원"
+    SWAMP: "늪"
+    TAIGA: "타이가"
+    THE_END: "끝 세계"
+    THE_VOID: "공허"
+    WARM_OCEAN: "따뜻한 바다"
+    WARPED_FOREST: "왜곡된 숲"
+    WINDSWEPT_FOREST: "바람 부는 숲"
+    WINDSWEPT_GRAVELLY_HILLS: "바람 부는 자갈 언덕"
+    WINDSWEPT_HILLS: "바람 부는 언덕"
+    WINDSWEPT_SAVANNA: "바람 부는 사바나"
+    WOODED_BADLANDS: "나무가 우거진 악지"
+  EntityType:
+    allay: "조력자"
+    area_effect_cloud: "영역 효과 구름"
+    armor_stand: "갑옷 거치대"
+    arrow: "화살"
+    axolotl: "액소롯"
+    bat: "박쥐"
+    bee: "꿀벌"
+    blaze: "블레이즈"
+    block_display: "블록 표시"
+    boat: "보트"
+    camel: "낙타"
+    cat: "고양이"
+    cave_spider: "동굴 거미"
+    chest_boat: "상자 보트"
+    chicken: "닭"
+    cod: "대구"
+    cow: "소"
+    creeper: "크리퍼"
+    dolphin: "돌고래"
+    donkey: "당나귀"
+    dragon_fireball: "용 화염구"
+    dropped_item: "떨어진 아이템"
+    drowned: "익사자"
+    egg: "달걀"
+    elder_guardian: "늙은 감시자"
+    enderman: "엔더맨"
+    endermite: "엔더미트"
+    ender_crystal: "엔더 크리스탈"
+    ender_dragon: "엔더 드래곤"
+    ender_pearl: "엔더 진주"
+    ender_signal: "엔더 신호"
+    evoker: "소환사"
+    evoker_fangs: "소환사 송곳니"
+    experience_orb: "경험의 구슬"
+    falling_block: "떨어지는 블록"
+    fireball: "화염구"
+    firework: "폭죽"
+    fishing_hook: "낚싯대 눈"
+    fox: "여우"
+    frog: "개구리"
+    ghast: "가스트"
+    giant: "거인"
+    glow_item_frame: "발광 아이템 액자"
+    glow_squid: "발광 오징어"
+    goat: "염소"
+    guardian: "감시자"
+    hoglin: "호글린"
+    horse: "말"
+    husk: "부패한 시체"
+    illusioner: "환영자"
+    interaction: "상호작용"
+    iron_golem: "철 골렘"
+    item_display: "아이템 표시"
+    item_frame: "아이템 액자"
+    leash_hitch: "송곳니 그물"
+    lightning: "번개"
+    llama: "라마"
+    llama_spit: "라마 침"
+    magma_cube: "마그마 큐브"
+    marker: "표지판"
+    minecart: "마인카트"
+    minecart_chest: "상자 마인카트"
+    minecart_command: "명령 블록 마인카트"
+    minecart_furnace: "화로 마인카트"
+    minecart_hopper: "깔때기 마인카트"
+    minecart_mob_spawner: "몹 생성기 마인카트"
+    minecart_tnt: "TNT 마인카트"
+    mule: "노새"
+    mushroom_cow: "버섯소"
+    ocelot: "오셀롯"
+    painting: "그림"
+    panda: "팬더"
+    parrot: "앵무새"
+    phantom: "팬텀"
+    pig: "돼지"
+    piglin: "피글린"
+    piglin_brute: "피글린 브루트"
+    pillager: "약탈자"
+    player: "플레이어"
+    polar_bear: "북극곰"
+    primed_tnt: "장약된 TNT"
+    pufferfish: "복어"
+    rabbit: "토끼"
+    ravager: "파괴자"
+    salmon: "연어"
+    sheep: "양"
+    shulker: "셜커"
+    shulker_bullet: "셜커 탄환"
+    silverfish: "좀벌레"
+    skeleton: "스켈레톤"
+    skeleton_horse: "스켈레톤 말"
+    slime: "슬라임"
+    small_fireball: "작은 화염구"
+    sniffer: "스니퍼"
+    snowball: "눈덩이"
+    snowman: "눈사람"
+    spectral_arrow: "광자화살"
+    spider: "거미"
+    splash_potion: "투척용 포션"
+    squid: "오징어"
+    stray: "길 잃은 자"
+    strider: "스트라이더"
+    tadpole: "올챙이"
+    text_display: "텍스트 표시"
+    thrown_exp_bottle: "투척용 경험치 병"
+    trader_llama: "상인 라마"
+    trident: "삼지창"
+    tropical_fish: "열대어"
+    turtle: "거북이"
+    unknown: "알 수 없음"
+    vex: "벡스"
+    villager: "주민"
+    vindicator: "복수자"
+    wandering_trader: "방랑상인"
+    warden: "수감자"
+    witch: "마녀"
+    wither: "위더"
+    wither_skeleton: "위더 스켈레톤"
+    wither_skull: "위더 해골"
+    wolf: "늑대"
+    zoglin: "조글린"
+    zombie: "좀비"
+    zombie_horse: "좀비 말"
+    zombie_villager: "좀비 주민"
+    zombified_piglin: "좀비화된 피글린"
+  EnchantAliases:
+    protection_fire:
+      - FireProtection
+    damage_all:
+      - Sharpness
+    arrow_fire:
+      - Flame
+    soul_speed:
+      - SOULSPEED
+    water_worker:
+      - AquaAffinity
+    arrow_knockback:
+      - Punch
+    loyalty:
+      - Loyalty
+    depth_strider:
+      - DepthStrider
+    vanishing_curse:
+      - VanishingCurse
+    durability:
+      - Unbreaking
+    knockback:
+      - Knockback
+    luck:
+      - Luck
+    binding_curse:
+      - BindingCurse
+    loot_bonus_blocks:
+      - Fortune
+    protection_environmental:
+      - Protection
+    dig_speed:
+      - Efficiency
+    mending:
+      - Mending
+    frost_walker:
+      - FrostWalker
+    lure:
+      - Lure
+    loot_bonus_mobs:
+      - Looting
+    piercing:
+      - Piercing
+    protection_explosions:
+      - BlastProtection
+    damage_undead:
+      - Smite
+    multishot:
+      - Multishot
+    swift_sneak:
+      - SWIFTSNEAK
+    fire_aspect:
+      - FireAspect
+    channeling:
+      - Channeling
+    sweeping_edge:
+      - SweepingEdge
+    thorns:
+      - Thorns
+    damage_arthropods:
+      - BaneOfArthropods
+    oxygen:
+      - Respiration
+    riptide:
+      - Riptide
+    silk_touch:
+      - SilkTouch
+    quick_charge:
+      - QUICKCHARGE
+    protection_projectile:
+      - ProjectileProtection
+    impaling:
+      - Impaling
+    protection_fall:
+      - FallProtection
+      - FeatherFalling
+    arrow_damage:
+      - Power
+    arrow_infinite:
+      - Infinity
+  PotionEffectAliases:
+    speed:
+      - Speed
+    slow:
+      - Slow
+    fast_digging:
+      - Fast digging
+    slow_digging:
+      - Slow digging
+    increase_damage:
+      - Increase damage
+    heal:
+      - Heal
+    harm:
+      - Harm
+    jump:
+      - Jump
+    confusion:
+      - Confusion
+    regeneration:
+      - Regeneration
+    damage_resistance:
+      - Damage resistance
+    fire_resistance:
+      - Fire resistance
+    water_breathing:
+      - Water breathing
+    invisibility:
+      - Invisibility
+    blindness:
+      - Blindness
+    night_vision:
+      - Night vision
+    hunger:
+      - Hunger
+    weakness:
+      - Weakness
+    poison:
+      - Poison
+    wither:
+      - Wither
+    health_boost:
+      - Health boost
+    absorption:
+      - Absorption
+    saturation:
+      - Saturation
+    glowing:
+      - Glowing
+    levitation:
+      - Levitation
+    luck:
+      - Luck
+    unluck:
+      - Unluck
+    slow_falling:
+      - Slow falling
+    conduit_power:
+      - Conduit power
+    dolphins_grace:
+      - Dolphins grace
+    bad_omen:
+      - Bad omen
+    hero_of_the_village:
+      - Hero of the village
+    darkness:
+      - Darkness
+direction:
+  n: "북쪽"
+  ne: "북동쪽"
+  e: "동쪽"
+  se: "남동쪽"
+  s: "남쪽"
+  sw: "남서쪽"
+  w: "서쪽"
+  nw: "북서쪽"
+modify:
+  middlemouse: "&2마우스 중간 버튼을 클릭하여 편집"
+  qButtonEdit: "&2Q를 클릭하여 편집"
+  newItem: "&7새로운 아이템을 여기에 놓으세요"
+  newLine: "&2<NewLine>"
+  newLineHover: "&2새로운 줄 추가"
+  newPage: "&2<NewPage>"
+  newPageHover: "&2새 페이지 생성"
+  removePage: "&c<RemovePage>"
+  removePageHover: "&c페이지 삭제"
+  deleteSymbol: " &c[X]"
+  deleteSymbolHover: "&c[text] 삭제"
+  extraEditSymbol: " &6!"
+  addSymbol: "&2[+]"
+  addSymbolHover: "&2추가"
+  cancelSymbol: " &7&l[X]"
+  cancelSymbolHover: "&a취소"
+  acceptSymbol: " &2&l[✔]"
+  acceptSymbolHover: "&a수락"
+  denySymbol: " &4&l[X]"
+  denySymbolHover: "&c거부"
+  enabledSymbol: "&2[+]"
+  disabledSymbol: "&c[-]"
+  enabled: "&2활성화됨"
+  disabled: "&c비활성화됨"
+  running: "&2실행 중"
+  paused: "&c일시 정지됨"
+  editSymbol: "&e✎"
+  editSymbolHover: "&e[text] 수정"
+  editLineColor: "&f"
+  listUpSymbol: "&6⇑"
+  listUpSymbolHover: "&e위로"
+  listDownSymbol: "&6⇓"
+  listDownSymbolHover: "&e아래로"
+  listNumbering: "&e[number]. "
+  listAlign: "&80"
+  ChangeHover: "&e변경하려면 클릭"
+  ChangeCommands: "&e명령어"
+  enabledColor: "&6"
+  disabledColor: "&7"
+  commandTitle: " &e--- &6[name] &e---"
+  commandList: " &e[command]  "
+  emptyLine: "&7[빈 줄]"
+  commandEdit: "&e목록 수정"
+  nameAddInfo: "&e새 이름 입력. 취소하려면 &6cancel 입력"
+  lineAddInfo: "&e새 줄 입력. 취소하려면 &6cancel 입력"
+  commandAddInfo: "&e새 명령어 입력. 취소하려면 &6cancel 입력"
+  commandAddInformationHover: "&e[playerName]은 플레이어 이름을 얻을 때 사용됩니다. \n&e명령어에 지연 시간 포함: \n&edelay! 5 \n&e특수 명령어를 지원합니다. 자세한 정보: \n&ehttps://www.zrips.net/cmi/commands/specialized/"
+  commandEditInfo: "&e이전 텍스트를 붙여넣으려면 클릭. 동작을 취소하려면 &6cancel 입력"
+  listLimit: "&e리스트는 최대 &6[amount] 항목보다 크면 안 됩니다"
+  commandEditInfoHover: "&e이전 텍스트를 붙여넣으려면 클릭"
+teleportation:
+  relocation: "!actionbar!&4당신의 이동 위치가 가로막혔습니다. 안전한 위치로 이동되었습니다."
+econ:
+  noMoney: "&c돈이 없습니다"
+  charged: "!actionbar!&f지불 완료: &6[amount]"
+  notEnoughMoney: "&c돈이 부족합니다. 필요한 금액: (&6[amount])"
+  tooMuchMoney: "&c돈이 너무 많습니다"
+  disabled: "&c경제 지원이 비활성화된 상태에서는 이 명령을 사용할 수 없습니다"
+  commandCost: "&7이 명령의 비용은 &6[cost] 입니다. 반복하려면 클릭하거나 확인하려면 여기를 클릭하세요"
+Selection:
+  SelectPoints: "&c선택 도구로 2개의 점을 선택하세요! AKA: &6[tool]"
+  PrimaryPoint: "&e주 선택 지점을 배치하였습니다 [point]"
+  SecondaryPoint: "&e보조 선택 지점을 배치하였습니다 [point]"
+  CoordsTop: "&eX: &6[x] &eY: &6[y] &eZ: &6[z]"
+  CoordsBottom: "&eX: &6[x] &eY: &6[y] &eZ: &6[z]"
+  Area: "&7[world] &f(&6[x1]:[y1]:[z1] &e[x2]:[y2]:[z2])"
+Location:
+  Title: "&8플레이어 위치"
+  Killer: "&e공격자: &6[killer]"
+  OneLiner: "&e위치: &6[location]"
+  DeathReason: "&e사망 원인: &6[reason]"
+  Full: "&7[world] &f[x]:[y]:[z]"
+  World: "&e월드: &6[world]"
+  X: "&eX: &6[x]"
+  Y: "&eY: &6[y]"
+  Z: "&eZ: &6[z]"
+  Pitch: "&e피치: &6[pitch]"
+  Yaw: "&e요: &6[yaw]"
+  WorldNames:
+    - world: "&2월드"
+    - world_nether: "&2네더 월드"
+    - world_the_end: "&2네더 월드"
+Locations: "&7위치: "
+warp:
+  list: "&e[pos]. &6[warpName] &f- &7[worldName] ([x]:[y]:[z])"
+afk:
+  "off": "&7플레이 중"
+  MayNotRespond: "&e플레이어가 자리를 비울 수 있으며 응답하지 않을 수 있습니다"
+  MayNotRespondStaff: "&e스태프 멤버가 자리를 비울 수 있으며 응답하지 않을 수 있습니다. 디스코드를 통해 연락을 시도하세요"
+BossBar:
+  hpBar: "&f[victim] &e[current]/[max] &f(-[damage])"
+Potion:
+  Effects: "&8포션 효과"
+  List: "&e[PotionName] [PotionAmplifier] &e지속 시간: &e[LeftDuration] 초"
+  NoPotions: "&e없음"
+Information:
+  Title: "&8플레이어 정보"
+  Health: "&e체력: &6[Health]/[maxHealth]"
+  Hunger: "&e허기: &6[Hunger]"
+  Saturation: "&e포화도: &6[Saturation]"
+  Exp: "&e경험치: &6[Exp]"
+  NotEnoughExp: "&e경험치가 부족합니다: &6[Exp]"
+  NotEnoughExpNeed: "&e경험치가 부족합니다: &6[Exp]/[need]"
+  tooMuchExp: "&e경험치가 너무 많습니다: &6[Exp]/[need]"
+  NotEnoughVotes: "&e투표 수가 부족합니다: &6[votes]"
+  TooMuchVotes: "&e투표 수가 너무 많습니다: &6[votes]"
+  BadGameMode: "&c현재 게임 모드에서는 이 작업을 수행할 수 없습니다"
+  BadArea: "&c이 영역에서는 이 작업을 수행할 수 없습니다"
+  GameMode: "&e게임 모드: &6[GameMode]"
+  Flying: "&e비행: &6[Flying]"
+  Uuid: "&6[uuid]"
+  FirstConnection: "&e첫 접속: &6[time]"
+  Lastseen: "&e마지막 접속: &6[time]"
+  Onlinesince: "&e온라인 상태: &6[time]"
+  Money: "&e잔액: &6[money]"
+  Group: "&e그룹: &6[group]"
+Elytra:
+  Speed: "&e속도: &6[speed]km/h"
+  SpeedBoost: " &a+ "
+  SpeedSuperBoost: " &2+ "
+  CanUse: "&c권한 없이 엘리트라를 착용할 수 없습니다!"
+  CantGlide: "&c여기서는 엘리트라를 사용할 수 없습니다!"
+  Charging: "&e충전 중 &f[percentage]%"
+NetherPortal:
+  ToHigh: "&c포탈이 너무 큽니다. 최대 높이는 &6[max]입니다!"
+  ToWide: "&c포탈이 너무 넓습니다. 최대 너비는 &6[max]입니다!"
+  Creation: "!actionbar!&7[height]x[width] 네더 포탈이 생성되었습니다!"
+  Disabled: "&c포탈 생성이 비활성화되었습니다!"
+Ender:
+  Title: "&7엔더 상자 열기"
+Chat:
+  localPrefix: ""
+  shoutPrefix: "&c[S]&r"
+  LocalNoOne: "!actionbar!&c귓속말은 아무도 듣지 않습니다. 글로벌 채팅을 위해 메시지 앞에 !를 입력하세요"
+  shoutDeduction: "!actionbar!&c귓속말에 대한 [amount]이 공제되었습니다"
+  publicHover: "&e보낸 시간: &6%server_time_hh:mm:ss%"
+  privateHover: "&e보낸 시간: &6%server_time_hh:mm:ss%"
+  staffHover: "&e보낸 시간: &6%server_time_hh:mm:ss%"
+  helpopHover: "&e보낸 시간: &6%server_time_hh:mm:ss%"
+  link: "&l&4[링크]"
+  item: "&7[%cmi_iteminhand_realname%[amount]&7]"
+  itemAmount: " x[amount]"
+  itemEmpty: "&7[Mighty fist]"
+command:
+  help:
+    output:
+      usage: "&e사용법: &7%usage%"
+      cmdInfoFormat: "[command] &f- &e[description]"
+      cmdFormat: "&6/[command]&f[arguments]"
+      helpPageDescription: "&e* [description]"
+      explanation: "&e * [explanation]"
+      title: "&e------ ======= &6도움말 &e======= ------"
+  nocmd:
+    help:
+      info: "&e사용 가능한 모든 명령어 표시"
+      args: ""
+  clearcache:
+    help:
+      info: "&e캐시 지우기"
+      args: ""
+  reload:
+    help:
+      info: "&e플러그인 설정 및 로캘 파일 다시 로드"
+      args: ""
+    info:
+      feedback: "&6CMIL 구성 및 로케일 파일이 다시 로드되었습니다! [ms]ms가 걸렸습니다."
+      failedConfig: "&4구성 파일을 로드하지 못했습니다! 철자를 확인하십시오!"
+      failedLocale: "&4Locale 파일을 로드하지 못했습니다! 철자를 확인하십시오!"
